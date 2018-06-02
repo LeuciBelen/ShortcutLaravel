@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'freelancers',
+        'passwords' => 'freelancers',
     ],
 
     /*
@@ -36,9 +36,14 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'freelancers' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'freelancers',
+        ],
+
+        'companies' => [
+            'driver' => 'session',
+            'provider' => 'companies',
         ],
 
         'api' => [
@@ -65,9 +70,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'freelancers' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Freelancer::class,
+        ],
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Company::class,
         ],
 
         // 'users' => [
@@ -92,9 +101,15 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
+        'freelancers' => [
+            'provider' => 'freelancers',
+            'table' => 'freelancers_password_resets',
+            'expire' => 60,
+        ],
+
+        'companies' => [
+            'provider' => 'companies',
+            'table' => 'companies_password_resets',
             'expire' => 60,
         ],
     ],
